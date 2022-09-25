@@ -40,14 +40,21 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Usuário
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/users/admin/create">Criar usuário</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/users/admin">Lista de usuário</a></li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/users/login">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/users/logout">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/users/admin/create">Cadastrar</a>
         </li>
       </ul>
     </div>
