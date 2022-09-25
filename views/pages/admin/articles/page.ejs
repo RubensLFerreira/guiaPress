@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../../../partials/linksBootstrap.ejs') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="/css/articleNavegate.css">
+  <title>Lista de artigos</title>
+</head>
+
+<body style="background-color: #d3d3d3;">
+  <%- include('../../../partials/navbar.ejs') %>
+  <br>
+  <div class="container">
+    <br>
+    <h2 style="border-left: .5rem solid #e6a800;"><b style="margin-left: .5rem;">Lista de Artigos</b></h2>
+    <% result.articles.rows.forEach((article) => { %>
+    <div class="card text-bg-dark">
+      <div class="card-header">Artigo</div>
+      <div class="card-body">
+        <h5 class="card-title"><%= article.title %></h5>
+        <!-- <p><%- article.body %> </p> -->
+        <br>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group" role="group"
+          aria-label="Small button group">
+          <a href="/<%= article.slug %> " class="btn btn-outline-light">Ler</a>
+          <a href="/articles/admin/edit/<%= article.id %>" class="btn btn-outline-light">Editar</a>
+          <a href="/articles/admin" class="btn btn-outline-light">Deletar</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <% }); %>
+    <br><br>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <% if(result.page > 2) { %>
+        <li class="page-item"></li>
+          <a class="page-link" href="<%= result.page - 1 %>">Anterior</a>
+        </li>
+        <% } else if(result.page == 2) { %>
+        <li class="page-item"></li>
+          <a class="page-link navegate" href="/">Anterior</a>
+        </li>
+        <% } %>
+
+        <% if(result.next) { %>
+        <li class="page-item">
+          <a class="page-link navegate" href="<%= result.page + 1 %>">Próximo</a>
+        </li>
+        <% } %>
+      </ul>
+    </nav>
+
+  </div>
+  <%- include('../../../partials/scriptsBootstrap.ejs') %>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+.navegate {
+  background-color: #212529;
+  color: aliceblue;
+}
+
+.navegate:hover {
+  background-color: #212529e7;
+  color: aliceblue;
+}

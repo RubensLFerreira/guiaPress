@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../../../partials/linksBootstrap.ejs') %>
+  <title>Usuários</title>
+</head>
+<body style="background-color: #d3d3d3;">
+  <%- include('../../../partials/navbar.ejs') %>
+  <div class="container"><br>
+
+    <h2 style="border-left: .5rem solid #e6a800;"><b style="margin-left: .5rem;">Lista de usuários</b></h2><br>
+
+    <a href="/users/admin/create">
+      <button class="btn btn-dark">Criar novo usuário</button>
+    </a><br><br>
+
+    <table class="table table-dark table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <% users.forEach((user) => { %>
+      <tbody>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+
+              <a href="/users/admin/edit/<%= user.id %>">
+                <button type="button" class="btn btn-outline-light">Ediar</button>
+              </a>
+
+              <form method="post" action="/users/admin/delete" onsubmit="confirmDelete(event, this)">
+                <input type="hidden" name="id" value="<%= user.id %>">
+                <button class="btn btn-outline-light">Deletar</button>
+              </form>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <% }); %>
+    </table>
+
+  </div>
+
+  <%- include('../../../partials/scriptsBootstrap.ejs') %>
+
+  <script>
+    // confirmação p/ deletar
+    function confirmDelete(event, form) {
+      event.preventDefault();
+      const decision = confirm('Você deseja apagar este artigo?');
+
+      if (decision) {
+        form.submit();
+      }
+    }
+  </script>
+</body>
+</html>

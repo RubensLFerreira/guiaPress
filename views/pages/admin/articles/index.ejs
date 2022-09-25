@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../../../partials/linksBootstrap.ejs') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <title>Artigos</title>
+</head>
+
+<body style="background-color: #d3d3d3;">
+  <%- include('../../../partials/navbar.ejs') %>
+
+  <div class="container">
+    <br>
+    <h2 style="border-left: .5rem solid #e6a800;"><b style="margin-left: .5rem;">Artigos</b></h2>
+    <br>
+
+    <a href="/articles/admin/new">
+      <button class="btn btn-dark">Criar novo artigo</button>
+    </a>
+    <br>
+    <br>
+
+    <table class="table table-dark table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Slug</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <% articles.forEach((article) => { %>
+      <tbody>
+        <tr>
+          <td><%= article.id %></td>
+          <td><%= article.title %></td>
+          <td><%= article.slug %></td>
+          <td><%= article.category.title %></td>
+          <td>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+
+              <a href="/articles/admin/edit/<%= article.id %>">
+                <button type="button" class="btn btn-outline-light">Ediar</button>
+              </a>
+
+              <form method="post" action="/articles/admin/delete" onsubmit="confirmDelete(event, this)">
+                <input type="hidden" name="id" value="<%= article.id %>">
+                <button class="btn btn-outline-light">Deletar</button>
+              </form>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <% }); %>
+    </table>
+
+  </div>
+
+  <%- include('../../../partials/scriptsBootstrap.ejs') %>
+
+  <script>
+    // confirmação p/ deletar
+    function confirmDelete(event, form) {
+      event.preventDefault();
+      const decision = confirm('Você deseja apagar este artigo?');
+
+      if (decision) {
+        form.submit();
+      }
+    }
+  </script>
+</body>
+
+</html>

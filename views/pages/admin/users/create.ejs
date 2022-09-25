@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../../../partials/linksBootstrap.ejs') %>
+  <link rel="stylesheet" href="/css/createUse.css">
+  <title>Criar usuário</title>
+</head>
+
+<body>
+  <%- include('../../../partials/navbar.ejs') %>
+  <div class="container"><br>
+
+    <div class="card text-bg-dark mb-3 mt-4 card-full">
+      <div class="card-header mt-3">
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title" id="offcanvasDarkLabel">Cadastro de usuário</h4>
+          <a href="/users/admin">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvasDark"
+              aria-label="Close"></button>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <form class="needs-validation was-validated form" action="/users/create" method="post" novalidate>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Digite seu nome"
+              aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text">Nome completo, por favor!</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="exemplo@gmail.com"
+              aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text">E-mail esclusivo!</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="********"
+              aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text">Senha com no mínimo 6 caracteres</div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-outline-light">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../../../partials/scriptsBootstrap.ejs') %>
+</body>
+
+</html>
